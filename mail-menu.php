@@ -7,11 +7,16 @@ add_action( 'admin_menu', 'my_plugin_menu' );
 /** Step 1: define main menu */
 function my_plugin_menu() {
 	add_menu_page( null, 'مدیریت ایمیل', 'export', 'my-mail-menu' ,'my_mail_menu_main','dashicons-email',55);
-	add_submenu_page( 'my-mail-menu', 'ایجاد ایمیل', 'ایجاد', 'export', 'my-submenu-handle_add', 'my_plugin_mail_add');
-	add_submenu_page( 'my-mail-menu', 'لیست ایمیل', 'لیست ایمیل ها', 'export', 'my-submenu-handle_list', 'my_plugin_mail_list');
+	$my_admin_page_add     = add_submenu_page( 'my-mail-menu', 'ایجاد ایمیل', 'ایجاد', 'export', 'my-submenu-handle_add', 'my_plugin_mail_add');
+	$my_admin_page_list    = add_submenu_page( 'my-mail-menu', 'لیست ایمیل', 'لیست ایمیل ها', 'export', 'my-submenu-handle_list', 'my_plugin_mail_list');
 	add_submenu_page( 'my-mail-menu', 'ورود به ایمیل', 'ورود به ایمیل ها', 'export', 'my-submenu-handle_panel', 'my_plugin_mail_panel');
 	add_submenu_page( null, 'ویرایش ایمیل', 'ویرایش', 'export', 'my-submenu-handle_edit', 'my_plugin_mail_edit');
 	add_submenu_page( null, 'حذف ایمیل', 'حذف', 'export', 'my-submenu-handle_del', 'my_plugin_mail_del');
+    
+    
+    // Adds my_help_tab when my_admin_page loads
+    add_action('load-'.$my_admin_page_add, 'my_plugin_mail_add_help');
+    add_action('load-'.$my_admin_page_list, 'my_plugin_mail_list_help');
 }
 
 /** -----ADD */
@@ -78,7 +83,6 @@ function my_plugin_mail_add()
        
         
     }
-    
     
     
     
@@ -403,6 +407,52 @@ function my_mail_menu_main()
     header('Location: ?page=my-submenu-handle_list ');
     exit;
 }
+
+
+
+function my_plugin_mail_add_help()
+{
+	// We are in the correct screen because we are taking advantage of the load-* action (below)
+
+	$screen = get_current_screen();
+	//$screen->remove_help_tabs();
+	$screen->add_help_tab( array(
+		'id'       => 'my-plugin-default2',
+		'title'    => __( 'Add' ).' '. __( 'Email' ),
+		'content'  => 'این بخش حاوی فرمی برای ایجاد یک اکانت ایمیل می باشد . در این فرم شما نام ایمیل مانند
+        info  و در گام بعد رمز و در آخرین گام حجم ایمیل مورد نظر را به مگابایت وارد می کنید'
+	));
+	//add more help tabs as needed with unique id's
+
+	// Help sidebars are optional
+	$screen->set_help_sidebar(
+		'<p><strong>' . __( 'For more information:' ) . '</strong></p>' .
+		'<p><a href="http://wordpress.org/support/" target="_blank">' . _( 'Support Forums' ) . '</a></p>'
+	);
+}
+
+function my_plugin_mail_list_help()
+{
+	// We are in the correct screen because we are taking advantage of the load-* action (below)
+
+	$screen = get_current_screen();
+	//$screen->remove_help_tabs();
+	$screen->add_help_tab( array(
+		'id'       => 'my-plugin-default2',
+		'title'    => __( 'لیست' ).' '. __( 'Email' ),
+		'content'  => 'در اینجا شما می توانید لیست ایمیل های ساخته شده برای دامنه مورد نظر خود را مشاهده کنید .
+        همچنین شما می توانید ایمیل مورد نظر خود را حذف کرده و یا رمز عبور و حجم آن را تغییر دهید .
+        <br>  توجه داشته باشید که ایمیل پیش فرض info خود را به هیچ وجه پاک نکنید'
+	));
+	//add more help tabs as needed with unique id's
+
+	// Help sidebars are optional
+	$screen->set_help_sidebar(
+		'<p><strong>' . __( 'For more information:' ) . '</strong></p>' .
+		'<p><a href="http://wordpress.org/support/" target="_blank">' . _( 'Support Forums' ) . '</a></p>'
+	);
+}
+
 
 
 ?>

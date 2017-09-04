@@ -4,7 +4,7 @@
    Plugin Name: Site Core  Managment 
    Plugin URI: http://www.wp-webservice.ir
    Description: a plugin to manage site and enable core feature
-   Version: 0.1
+   Version: 0.2
    Author: FBIT
    Author URI: http://www.wp-webservice.ir
    License: GPL2
@@ -191,6 +191,7 @@ function change_wordpress($translated, $text, $domain)
 function wccpf_register_styles() {
     
     wp_enqueue_style('wp-parsi-core-managment-admin', WP_CORE_MANAGMENT_URL . 'assets/css/admin-styles.css', false, WP_CORE_MANAGMENT_VER, 'all');
+    wp_enqueue_script('wp-parsi-core-managment-admin-script', WP_CORE_MANAGMENT_URL . 'assets/js/admin.js', array('jquery') , WP_CORE_MANAGMENT_VER, 'all');
     //wp_enqueue_style('wp-parsi-core-managment-admin');
 	
 }
@@ -275,7 +276,7 @@ include('customize-login.php');
 
 include('updatable-by-repo.php');
 if ( is_admin() ) {
-    new BFIGitHubPluginUpdater( __FILE__, 'hamid', "wp_coreManaging_Plugin" );
+    new PluginGitHubUpdater( __FILE__, 'hamid', "wp_coreManaging_Plugin" );
 }
 
 
