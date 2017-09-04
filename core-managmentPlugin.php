@@ -4,7 +4,7 @@
    Plugin Name: Site Core  Managment 
    Plugin URI: http://www.wp-webservice.ir
    Description: a plugin to manage site and enable core feature
-   Version: 1.1
+   Version: 0.1
    Author: FBIT
    Author URI: http://www.wp-webservice.ir
    License: GPL2
@@ -273,7 +273,10 @@ include('customize-login.php');
  * ---- Updateable Feature by github repository
  * ===============================  */
 
-include('updateable-by-repo.php');
+include('updatable-by-repo.php');
+if ( is_admin() ) {
+    new BFIGitHubPluginUpdater( __FILE__, 'hamid', "wp_coreManaging_Plugin" );
+}
 
 
 
