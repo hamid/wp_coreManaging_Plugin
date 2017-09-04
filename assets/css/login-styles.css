@@ -1,0 +1,115 @@
+
+/**
+ * custom login
+*/
+
+@font-face{font-family:Yekan;font-weight:400;font-style:normal;src:url(../fonts/BYekan.ttf) format("truetype")}
+
+body.rtl,
+button,
+html,
+input,
+select,
+textarea
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+#wpadminbar a {
+    font-size:13px;
+    font-family:Yekan,tahoma,sans-serif,arial !important;
+	
+}
+
+.rtl #wpadminbar {
+	font-family: 'DroidNaskh', 'Roboto', tahoma, sans-serif ;
+}
+
+
+body.login {
+  background-image: url(../img/bg2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+    background-size: cover;
+}
+
+
+.login h1 a {
+        width: 300px;
+    background-image: url(../img/logo.png);
+    background-size: 270px;
+}
+
+
+.login label {
+  font-size: 13px;
+  color: #555555;
+}
+
+.login input[type="text"]{
+  background-color: #ffffff;
+  border-color:#dddddd;
+  -webkit-border-radius: 2px;
+    font-family: sans-serif,tahoma !important;
+    text-align: left;
+    margin-top: 4px;
+}
+
+.login input[type="password"]{
+  background-color: #ffffff;
+  border-color:#dddddd;
+  -webkit-border-radius: 2px;
+    font-family: sans-serif ,tahoma!important;
+    margin-top: 4px;
+    text-align: left;
+}
+
+
+.login form
+{
+    box-shadow: 0 1px 1px rgba(0,0,0,.23);
+    border-radius: 2px;
+}
+
+.login .button-primary {
+  width: 80px;
+  
+  background-color:#17a8e3 !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(#17a8e3), to(#17a8e3));
+  background: -webkit-linear-gradient(top, #17a8e3, #17a8e3);
+  background: -moz-linear-gradient(top, #17a8e3, #17a8e3);
+  background: -ms-linear-gradient(top, #17a8e3, #17a8e3);
+  background: -o-linear-gradient(top, #17a8e3, #17a8e3);
+  background-image: -ms-linear-gradient(top, #17a8e3 0%, #17a8e3 100%);
+  color: #ffffff;
+  -webkit-border-radius: 2px;
+  border: 1px solid #0d9ed9;
+}
+
+.login .button-primary:hover {
+  background-color:#17a8e3 !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(#17a8e3), to(#0d9ed9 ));
+  background: -webkit-linear-gradient(top, #17a8e3, #0d9ed9 );
+  background: -moz-linear-gradient(top, #17a8e3, #0d9ed9 );
+  background: -ms-linear-gradient(top, #17a8e3, #0d9ed9 );
+  background: -o-linear-gradient(top, #17a8e3, #0d9ed9 );
+  background-image: -ms-linear-gradient(top, #0b436e 0%, #0d9ed9 100%);
+  color: #fff;
+  -webkit-border-radius: 2px;
+  border: 1px solid #0d9ed9;
+}
+
+.login .button-primary:active {
+  background-color:#17a8e3 !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0d9ed9), to(#17a8e3));
+  background: -webkit-linear-gradient(top, #0d9ed9, #17a8e3);
+  background: -moz-linear-gradient(top, #0d9ed9, #17a8e3);
+  background: -ms-linear-gradient(top, #0d9ed9, #17a8e3);
+  background: -o-linear-gradient(top, #0d9ed9, #17a8e3);
+  background-image: -ms-linear-gradient(top, #0d9ed9 0%, #17a8e3 100%);
+  color: #fff;
+  -webkit-border-radius: 2px;
+  border: 1px solid #0d9ed9;
+}
