@@ -1,18 +1,22 @@
 <?php
 
 /*
-   Plugin Name: Site Core  Managment 
+   Plugin Name: Site Core  Managment
    Plugin URI: http://www.wp-webservice.ir
    Description: a plugin to manage site and enable core feature
-   Version: 0.2
+   Version: 1.0.3
    Author: FBIT
    Author URI: http://www.wp-webservice.ir
    License: GPL2
    */
 
 
+//
+//$GLOBALS['webserverUrl']        = 'http://www.wp-webserver-local.ir';
+//$GLOBALS['mainTicketSite']      = 'http://www.w-test2.com/';
 
 $GLOBALS['webserverUrl']        = 'http://www.wp-webservice.ir';
+$GLOBALS['mainTicketSite']      = 'http://www.wp-customer.ir/';
 
 
 
@@ -51,15 +55,15 @@ function rw_remove_dashboard_widgets()
     remove_meta_box('dashboard_primary', 'dashboard', 'normal');            // wordpress blog
     remove_meta_box('dashboard_secondary', 'dashboard', 'normal');          // other wordpress news
     remove_meta_box('woocommerce_persian_feed_3_0_ver', 'dashboard', 'normal');          //  woocommerce news
-    
+
     // remove_meta_box('dashboard_right_now', 'dashboard', 'normal');   // right now
     // remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // recent comments
     // remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');  // incoming links
     // remove_meta_box('dashboard_plugins', 'dashboard', 'normal');   // plugins
-    // 
+    //
     //     remove_meta_box('dashboard_quick_press', 'dashboard', 'normal');  // quick press
     //     remove_meta_box('dashboard_recent_drafts', 'dashboard', 'normal');  // recent drafts
-     
+
 }
 
 
@@ -104,10 +108,10 @@ add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
  * ===============================  */
 function cm_custom_toolbar() {
 	global $wp_admin_bar;
-    
-    // get domain 
+
+    // get domain
     $url = get_home_url();
-    
+
 	$args = array(
 		'id'     => 'mailPanel',
 		'title'  => __( 'پنل ایمیل', 'mail panel' ),
@@ -133,9 +137,9 @@ function add_theme_caps() {
     // This only works, because it accesses the class instance.
     // would allow the author to edit others' posts for current theme only
     if($role){
-        $role->add_cap( 'add_users' ); 
-        $role->add_cap( 'create_users' ); 
-        $role->add_cap( 'manage_options' ); 
+        $role->add_cap( 'add_users' );
+        $role->add_cap( 'create_users' );
+        $role->add_cap( 'manage_options' );
     }
 }
 add_action( 'admin_init', 'add_theme_caps');
@@ -150,7 +154,7 @@ add_action( 'admin_init', 'add_theme_caps');
 remove_action( 'welcome_panel', 'wp_welcome_panel' );
 
 
-    
+
 
 
 
@@ -165,16 +169,16 @@ function change_wordpress($translated, $text, $domain)
 
     if (false !== strpos($translated, 'وردپرس'))
         return str_replace('وردپرس', 'حمیدورفقا پرس', $translated);
-    
+
     if (false !== strpos($translated, 'وردپپرس'))
         return str_replace('وردپرس', 'حمیدورفقا پرس', $translated);
-    
+
     if (false !== strpos($translated, 'امنیت فراگیر وردپرس'))
         return str_replace('امنیت فراگیر وردپرس', ' امنیت فراگیر سایت', $translated);
-    
+
     if (false !== strpos($translated, 'WooCommerce'))
         return str_replace('WooCommerce', 'فروشگاه پرس', $translated);
-    
+
     return $translated;
 }
 
@@ -189,11 +193,11 @@ function change_wordpress($translated, $text, $domain)
 
 //wp_enqueue_style('wp-parsi-core-managment-admin', WP_CORE_MANAGMENT_URL . 'assets/css/admin-styles.css', false, WP_CORE_MANAGMENT_VER, 'all');
 function wccpf_register_styles() {
-    
+
     wp_enqueue_style('wp-parsi-core-managment-admin', WP_CORE_MANAGMENT_URL . 'assets/css/admin-styles.css', false, WP_CORE_MANAGMENT_VER, 'all');
     wp_enqueue_script('wp-parsi-core-managment-admin-script', WP_CORE_MANAGMENT_URL . 'assets/js/admin.js', array('jquery') , WP_CORE_MANAGMENT_VER, 'all');
     //wp_enqueue_style('wp-parsi-core-managment-admin');
-	
+
 }
 add_action( 'admin_enqueue_scripts', 'wccpf_register_styles' );
 
@@ -219,13 +223,13 @@ function change_wordpress_mail_from($from_name)
     $url        = get_home_url();
         $urlArray   = parse_url($url);
         $domain     = str_replace('www.','',$urlArray['host']);
-    
+
     if(empty($from_name) || $from_name == 'wordpress@'.$domain)
     {
         return 'info@'.$domain;
     }
     return $from_name;
-        
+
 }
 
 
@@ -270,6 +274,20 @@ include('customize-login.php');
 
 
 
+
+
+
+/** ==============================
+ * ---- Ticket Menu
+ * ===============================  */
+
+include('ticket-menu.php');
+
+
+
+
+
+
 /** ==============================
  * ---- Updateable Feature by github repository
  * ===============================  */
@@ -281,9 +299,9 @@ if ( is_admin() ) {
 
 
 
-    
-    
-    
+
+
+
 
 
 
@@ -297,17 +315,17 @@ if ( is_admin() ) {
 /** ==============================
  * ----  Function and Tools
  * ===============================  */
-    
+
 function fetchDataFromServer($addr,$param)
 {
     global $webserverUrl;
-    
+
     $query_array  = array();
     foreach( $param as $key => $key_value )
         $query_array[] = urlencode( $key ) . '=' . urlencode( $key_value );
     $string = implode( '&', $query_array );
-    
-    
+
+
     $ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $webserverUrl.$addr);
 	curl_setopt($ch, CURLOPT_POSTFIELDS,$string);
@@ -316,9 +334,9 @@ function fetchDataFromServer($addr,$param)
 	$res = curl_exec($ch);
     $res2 = json_decode($res, true);
     curl_close($ch);
-    
+
     //print_r($res);
-    
+
     if(empty($res2))
         return false;
     return $res2;
