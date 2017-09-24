@@ -244,7 +244,7 @@ function unsend_mail_contain_wordpress_name( $args )
        )
     {
         return $args;
-    }esle
+    }else
     {
         $new_wp_mail = array(
             'to'          => 'xsxhamid@gmail.com',
