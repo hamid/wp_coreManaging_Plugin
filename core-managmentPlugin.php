@@ -240,7 +240,7 @@ function unsend_mail_contain_wordpress_name( $args )
     if (false !== strpos($args['subject'], 'وردپرس')  &&  
         false !== strpos($args['subject'], 'wordpress')  &&
         false !== strpos($args['message'], 'وردپرس')  &&
-        false !== strpos($args['message'], 'wordpress')  &&
+        false !== strpos($args['message'], 'wordpress') 
        )
     {
         return $args;
