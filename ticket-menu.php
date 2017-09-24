@@ -266,9 +266,5 @@ function mk_randomstring($length = 20)
 
 
 
-?>
-
-
-
 
 ?>
