@@ -4,7 +4,7 @@
    Plugin Name: Site Core  Managment
    Plugin URI: http://www.wp-webservice.ir
    Description: a plugin to manage site and enable core feature
-   Version: 1.0.3
+   Version: 1.0.4
    Author: FBIT
    Author URI: http://www.wp-webservice.ir
    Text Domain: wp-admin-core-managment
