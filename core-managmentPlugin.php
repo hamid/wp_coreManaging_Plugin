@@ -7,6 +7,7 @@
    Version: 1.0.3
    Author: FBIT
    Author URI: http://www.wp-webservice.ir
+   Text Domain: wp-admin-core-managment
    License: GPL2
    */
 
@@ -55,6 +56,8 @@ function rw_remove_dashboard_widgets()
     remove_meta_box('dashboard_primary', 'dashboard', 'normal');            // wordpress blog
     remove_meta_box('dashboard_secondary', 'dashboard', 'normal');          // other wordpress news
     remove_meta_box('woocommerce_persian_feed_3_0_ver', 'dashboard', 'normal');          //  woocommerce news
+    remove_meta_box('woocommerce_persian_feed_3_1_2_ver', 'dashboard', 'normal');          //  woocommerce news
+    remove_meta_box('woocommerce_persian_feed_3_1_3_ver', 'dashboard', 'normal');          //  woocommerce news
 
     // remove_meta_box('dashboard_right_now', 'dashboard', 'normal');   // right now
     // remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // recent comments
@@ -166,18 +169,23 @@ function change_wordpress($translated, $text, $domain)
 {
     if (!is_admin() || 'default' != $domain)
         return $translated;
+    
+    if( defined('WP_SOFTWARE_NAME'))
+        $softwareName = WP_SOFTWARE_NAME;
+    else
+        $softwareName = 'سامانه فروشگاهی';
 
     if (false !== strpos($translated, 'وردپرس'))
-        return str_replace('وردپرس', 'حمیدورفقا پرس', $translated);
+        return str_replace('وردپرس', $softwareName, $translated);
 
     if (false !== strpos($translated, 'وردپپرس'))
-        return str_replace('وردپرس', 'حمیدورفقا پرس', $translated);
+        return str_replace('وردپرس', $softwareName, $translated);
 
     if (false !== strpos($translated, 'امنیت فراگیر وردپرس'))
         return str_replace('امنیت فراگیر وردپرس', ' امنیت فراگیر سایت', $translated);
 
     if (false !== strpos($translated, 'WooCommerce'))
-        return str_replace('WooCommerce', 'فروشگاه پرس', $translated);
+        return str_replace('WooCommerce', 'فروشگاه ', $translated);
 
     return $translated;
 }
@@ -266,20 +274,37 @@ function unsend_mail_contain_wordpress_name( $args )
 
 
 
+
+
+
 /** =================================
  * ---- Remove WooCommerce sub menu
  * ==================================  */
 function wpdocs_adjust_the_wp_menu() {
     $page = remove_submenu_page( 'woocommerce', 'pw-plugins' );
     $page = remove_submenu_page( 'woocommerce', 'pw-themes' );
+    
+    
+    
+   // global $menu;
+
+    
+//    remove_menu_page( 'menu-posts' );
+  //  $menu['102']['0'] = 'oooo';
 }
 add_action( 'admin_menu', 'wpdocs_adjust_the_wp_menu', 999 );
 
 
 
 
-
-
+/** =================================
+ * ---- Rename menu
+ * ==================================  */
+function wpdocs_adjust_the_wp_menu_rename() {
+//    global $menu;
+//    $menu['102']['0'] = 'oooo';
+}
+//add_action( 'admin_menu', 'wpdocs_adjust_the_wp_menu_rename', 999 );
 
 
 
@@ -329,6 +354,25 @@ if ( is_admin() ) {
 }
 
 
+
+
+
+
+/** ==============================
+ * ---- Add Language
+ * ===============================  */
+add_action('plugins_loaded', 'wan_load_textdomain_cm',1000000);
+function wan_load_textdomain_cm() {
+	load_plugin_textdomain( 'wp-admin-core-managment', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
+    
+    
+	//load_plugin_textdomain( 'wp-hide-security-enhancer', false, dirname( plugin_basename(__FILE__) ) . '/lang/wphide/' );
+    
+//$test = __('dasdadsKey','wp-admin-core-managment');
+//die($test);
+    
+    
+}
 
 
 

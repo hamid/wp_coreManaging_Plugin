@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp hide security enhancer\n"
+"POT-Creation-Date: 2017-09-26 15:17+0330\n"
+"PO-Revision-Date: 2017-09-26 15:35+0330\n"
+"Last-Translator: \n"
+"Language-Team: xsx.hamid@gmail.com\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: core-managing/mail-menu.php:430 core-managing/mail-menu.php:452
+#: core-managing/ticket-menu.php:101 core-managing/ticket-menu.php:127
+msgid "Support Forums"
+msgstr "csc"
